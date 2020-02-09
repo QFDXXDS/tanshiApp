@@ -409,12 +409,95 @@
 
 
 - (IBAction)speakerButtonAction:(id)sender {
+    
+    if (self.speakerButton.selected) {
+        
+        [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器-开启"] forState:UIControlStateNormal];
+        self.speakerButton.selected = NO;
+        for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
+            
+            if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
+                
+                [self.mediaManager setSpeaker:speaker];
+                break;
+            }
+        }
+        
+    }else {
+        
+        [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器"] forState:UIControlStateNormal];
+        self.speakerButton.selected = YES;
+        [self.mediaManager setSpeaker:nil];
+
+    }
+    
 }
 
 - (IBAction)micButtonAction:(id)sender {
+    
+    if (self.micButton.selected) {
+        
+        [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
+        self.micButton.selected = NO;
+        if(self.currentCall.muteCapability.allowed) {
+            
+            NSLog(@"%s Call audio can be muted", __PRETTY_FUNCTION__);
+            
+            [self.currentCall muteAudio: YES completionHandler:^(NSError *error) {
+                
+                if(error) {
+                    
+                    [NotificationHelper displayMessageToUser:[NSString stringWithFormat:@"Error while muting audio of call, callId: [%lu]", (long)self.currentCall.callId] TAG:__PRETTY_FUNCTION__];
+                } else {
+                    
+                    NSLog(@"%s Audio Mute succesfful for call, callId: [%lu]", __PRETTY_FUNCTION__, (long)self.currentCall.callId);
+                }
+            }];
+        } else {
+            
+            NSLog(@"%s Call audio cannot be muted", __PRETTY_FUNCTION__);
+        }
+        
+    }else {
+        
+        [self.micButton setBackgroundImage:[UIImage imageNamed:@"麦克风"] forState:UIControlStateNormal];
+        self.micButton.selected = YES;
+        
+        if(self.currentCall.unmuteCapability.allowed && self.currentCall.audioMuted) {
+            
+            NSLog(@"%s Call audio can be unmuted", __PRETTY_FUNCTION__);
+            
+            [self.currentCall muteAudio:NO completionHandler:^(NSError *error) {
+                
+                if(error) {
+                    
+                    [NotificationHelper displayMessageToUser:[NSString stringWithFormat:@"Error while muting Audio of the call, callId: [%ld]", (long)self.currentCall.callId] TAG: __PRETTY_FUNCTION__];
+                } else {
+                    
+                    NSLog(@"%s Audio of call muted successfully, callId:[%lu]", __PRETTY_FUNCTION__, (long)self.currentCall.callId);
+                }
+            }];
+        } else {
+            
+            NSLog(@"%s Call audio cannot be unmuted", __PRETTY_FUNCTION__);
+        }
+    }
+    
 }
 
 - (IBAction)cameraButtonAction:(id)sender {
+    
+    if (self.cameraButton.selected) {
+        
+        [self.cameraButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        self.cameraButton.selected = NO;
+        
+    }else {
+        
+        [self.cameraButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        self.cameraButton.selected = YES;
+    }
+    
 }
 @end
 
