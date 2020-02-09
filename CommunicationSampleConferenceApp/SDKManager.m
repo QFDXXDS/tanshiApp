@@ -190,7 +190,7 @@ CSVideoInterfaceDelegate>
 - (void)userDidRegisterWithAllServers:(CSUser *)user  {
     NSLog(@"%s user(%@)", __PRETTY_FUNCTION__, user.userId);
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidRegisterNotification object:nil];
-    [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"Successfully Logged in"]];
+//    [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"Successfully Logged in"]];
 }
 
 - (void)userDidFailToRegisterWithAllServers:(CSUser *)user willRetry:(BOOL)flag {

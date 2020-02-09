@@ -33,6 +33,7 @@
 		F087F31E23EE9E22004FBB4A /* RVVideoCodec.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F087F31F23EE9E30004FBB4A /* AvayaClientMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; };
 		F087F32023EE9E30004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F087F32523F03311004FBB4A /* CTRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F32423F03311004FBB4A /* CTRegex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,7 +67,7 @@
 		DF5064392206CF2F000E0491 /* HTTPCallServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPCallServiceViewController.h; sourceTree = "<group>"; };
 		DF50643A2206CF2F000E0491 /* HTTPCallServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPCallServiceViewController.m; sourceTree = "<group>"; };
 		E63B7EED858164381E078A60 /* Pods-CommunicationSampleConferenceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommunicationSampleConferenceApp.release.xcconfig"; path = "Target Support Files/Pods-CommunicationSampleConferenceApp/Pods-CommunicationSampleConferenceApp.release.xcconfig"; sourceTree = "<group>"; };
-		EE5010B91D0AD94B006552A7 /* CommunicationSampleConferenceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommunicationSampleConferenceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE5010B91D0AD94B006552A7 /* 雷神山探视.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "雷神山探视.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA458BA1D2BC88E00265E85 /* NotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationHelper.h; path = CommunicationSampleConferenceApp/NotificationHelper.h; sourceTree = SOURCE_ROOT; };
 		EEA458BB1D2BC88E00265E85 /* NotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationHelper.m; path = CommunicationSampleConferenceApp/NotificationHelper.m; sourceTree = SOURCE_ROOT; };
 		EEA458C01D2BC8DB00265E85 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CommunicationSampleConferenceApp/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -92,6 +93,8 @@
 		F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RVVideoCodec.framework; sourceTree = "<group>"; };
 		F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AvayaClientServices.framework; sourceTree = "<group>"; };
 		F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AvayaClientMedia.framework; sourceTree = "<group>"; };
+		F087F32323F03308004FBB4A /* CTRegex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTRegex.h; sourceTree = "<group>"; };
+		F087F32423F03311004FBB4A /* CTRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRegex.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +145,7 @@
 		EE5010BA1D0AD94B006552A7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EE5010B91D0AD94B006552A7 /* CommunicationSampleConferenceApp.app */,
+				EE5010B91D0AD94B006552A7 /* 雷神山探视.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +204,8 @@
 		EE5011401D0E82AD006552A7 /* Client Services */ = {
 			isa = PBXGroup;
 			children = (
+				F087F32323F03308004FBB4A /* CTRegex.h */,
+				F087F32423F03311004FBB4A /* CTRegex.m */,
 				3E8017E0207E3C35008925EE /* CSCall+Additions.h */,
 				3E8017E1207E3C36008925EE /* CSCall+Additions.m */,
 				DB1244861DD5905800350476 /* Constants.h */,
@@ -270,7 +275,7 @@
 			);
 			name = CommunicationSampleConferenceApp;
 			productName = CommunicationSampleConferenceApp;
-			productReference = EE5010B91D0AD94B006552A7 /* CommunicationSampleConferenceApp.app */;
+			productReference = EE5010B91D0AD94B006552A7 /* 雷神山探视.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -355,6 +360,7 @@
 			files = (
 				EEEE10621D4B7C9E00980F46 /* VideoView.m in Sources */,
 				EEA458D21D2BC92D00265E85 /* MediaManager.m in Sources */,
+				F087F32523F03311004FBB4A /* CTRegex.m in Sources */,
 				EEA458D31D2BC92D00265E85 /* SDKManager.m in Sources */,
 				DB1244881DD5905800350476 /* Constants.m in Sources */,
 				DF50643B2206CF30000E0491 /* HTTPCallServiceViewController.m in Sources */,
@@ -492,8 +498,8 @@
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.ChanghongJiShi;
-				PRODUCT_NAME = CommunicationSampleConferenceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
+				PRODUCT_NAME = "雷神山探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -512,8 +518,8 @@
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.ChanghongJiShi;
-				PRODUCT_NAME = CommunicationSampleConferenceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
+				PRODUCT_NAME = "雷神山探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

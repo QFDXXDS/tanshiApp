@@ -10,6 +10,10 @@
 #import "ActiveCallViewController.h"
 #import "NotificationHelper.h"
 #import "ConfigData.h"
+#import "CTRegex.h"
+
+
+NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
 
 @interface HTTPCallServiceViewController ()
 
@@ -28,7 +32,7 @@
     self.displayNameTextField.delegate = self;
     self.conferenceUsernameTextField.delegate = self;
     self.conferencePasswordTextField.delegate = self;
-    
+    self.conferenceIDTextField.delegate = self;
     //Hide keyboard once clicked outside of Phone Pad
     self.tap = [[UITapGestureRecognizer alloc]
                 initWithTarget:self
@@ -49,6 +53,8 @@
         // Create user in async task
         [[SDKManager getInstance] setupClient];
     });
+    
+    
 }
 
 - (void)dealloc{
@@ -59,9 +65,28 @@
 
     [self.view removeGestureRecognizer:self.tap];
 }
+- (IBAction)makeVideoCall:(UIButton *)sender {
+    
+        
+    NSString *ID = self.conferenceIDTextField.text ;
+        
+//    if(![CTRegex is6Number:ID] ) {
+//
+//        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"]];
+//        return;
+//    }
+    
+    [self performSegueWithIdentifier:@"videoCallSegue" sender:nil] ;
+//    [self prepareForSegue:self.videoCallSegue sender:nil];
+        
+    
+}
 
 - (void)dismissKeyboard {
     [self.conferenceURLTextField resignFirstResponder];
+    
+    [self.conferenceIDTextField resignFirstResponder];
+
 }
 
 - (void)setBorderWidth:(UIButton *)btn
@@ -70,6 +95,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     
     UINavigationController *navigationController = [segue destinationViewController];
     if (![navigationController isKindOfClass:[UINavigationController class]]) {
@@ -189,7 +215,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField == self.conferenceURLTextField) {
+    if (textField == self.conferenceIDTextField) {
         
         [textField resignFirstResponder];
         if (self.guestLoginSwitch.on) {
@@ -239,7 +265,18 @@
 - (void)restoreConfiguration {
     ConfigData *configuration = [ConfigData getInstance];
     self.guestLoginSwitch.on = configuration.loginAsGuest;
-    self.conferenceURLTextField.text = configuration.conferenceURL;
+//    self.conferenceURLTextField.text = configuration.conferenceURL;
+    
+    NSString *conferenceURL = configuration.conferenceURL;
+    if (conferenceURL.length > 0) {
+        NSArray *temp = [conferenceURL componentsSeparatedByString:@"="];
+        if (temp.count > 1) {
+            
+            self.conferenceIDTextField.text = [temp lastObject ];
+        }
+    }
+    
+    
     self.conferenceUsernameTextField.text = configuration.conferenceUsername;
     self.conferenceUsernameTextField.enabled = !configuration.loginAsGuest;
     self.conferencePasswordTextField.text = configuration.conferencePassword;
@@ -250,9 +287,8 @@
 
 - (ConfigData *)saveConfiguration {
     ConfigData *configuration = [ConfigData getInstance];
-//    configuration.conferenceURL = self.conferenceURLTextField.text;
     
-    configuration.conferenceURL = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=70005" ;
+    configuration.conferenceURL = [NSString stringWithFormat:@"%@%@",kConferenceURLDefault,self.conferenceIDTextField.text];
     configuration.loginAsGuest = self.guestLoginSwitch.on;
     configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"SampleConferenceAppUser";
     configuration.conferenceUsername = self.conferenceUsernameTextField.text;

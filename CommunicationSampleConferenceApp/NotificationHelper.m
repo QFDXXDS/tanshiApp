@@ -54,10 +54,20 @@
     
     UIAlertController *toast = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil] ;
+    [toast addAction:ac];
     //Display alert view window
+    
+    
+//    修改颜色
+        NSMutableAttributedString *alertControllerMessageStr = [[NSMutableAttributedString alloc] initWithString:msg];
+        [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, msg.length)];
+        [toast setValue:alertControllerMessageStr forKey:@"attributedMessage"];
+
+
     [rootView presentViewController:toast animated:YES completion:nil];
     
-    int duration = 3; // duration in seconds
+    int duration = 2; // duration in seconds
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         
         [toast dismissViewControllerAnimated:YES completion:nil];
