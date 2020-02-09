@@ -1,0 +1,6 @@
+framework module RVVideoCodec {
+  umbrella header "RVVideoCodec.h"
+
+  export *
+  module * { export * }
+}

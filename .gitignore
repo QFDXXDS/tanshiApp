@@ -22,7 +22,6 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-*.framework
 
 
 ## Obj-C/Swift specific

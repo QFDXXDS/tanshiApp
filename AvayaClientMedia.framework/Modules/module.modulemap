@@ -1,0 +1,6 @@
+framework module AvayaClientMedia {
+  umbrella header "AvayaClientMedia.h"
+
+  export *
+  module * { export * }
+}

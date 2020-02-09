@@ -1,0 +1,6 @@
+framework module AvayaClientServices {
+  umbrella header "AvayaClientServices.h"
+
+  export *
+  module * { export * }
+}
