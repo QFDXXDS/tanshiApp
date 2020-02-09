@@ -20,6 +20,13 @@
 
 @implementation ActiveCallViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+}
+
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -398,5 +405,16 @@
     }
 }
 
+
+
+
+- (IBAction)speakerButtonAction:(id)sender {
+}
+
+- (IBAction)micButtonAction:(id)sender {
+}
+
+- (IBAction)cameraButtonAction:(id)sender {
+}
 @end
 

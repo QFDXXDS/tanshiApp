@@ -26,8 +26,23 @@
 
 @property (nonatomic, weak) CSCall *currentCall;
 
+@property (weak, nonatomic) IBOutlet UIButton *speakerButton;
+@property (weak, nonatomic) IBOutlet UIButton *micButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+
+//扬声器点击方法
+- (IBAction)speakerButtonAction:(id)sender;
+//麦克风点击方法
+- (IBAction)micButtonAction:(id)sender;
+//相机点击方法
+- (IBAction)cameraButtonAction:(id)sender;
+
+
+//挂断
 - (IBAction)endCallBtnClicked:(id)sender;
+//静音
 - (IBAction)muteSwitchValueChanged:(id)sender;
+//扬声器
 - (IBAction)speakerPhoneSwitchValueChanged:(id)sender;
 - (IBAction)holdCallBtnClicked:(id)sender;
 @end

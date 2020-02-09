@@ -115,7 +115,6 @@
 				3FA8824EA688CB1D45CEE0F6 /* Pods-CommunicationSampleConferenceApp.debug.xcconfig */,
 				E63B7EED858164381E078A60 /* Pods-CommunicationSampleConferenceApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

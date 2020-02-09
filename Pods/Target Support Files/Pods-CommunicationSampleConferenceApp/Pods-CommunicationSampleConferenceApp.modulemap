@@ -1,0 +1,6 @@
+framework module Pods_CommunicationSampleConferenceApp {
+  umbrella header "Pods-CommunicationSampleConferenceApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
