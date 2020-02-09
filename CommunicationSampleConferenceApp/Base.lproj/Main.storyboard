@@ -184,40 +184,54 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pH-LT-DZL">
-                                <rect key="frame" x="53" y="529" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="挂断"/>
-                                <connections>
-                                    <action selector="endCallBtnClicked:" destination="urI-J8-xfp" eventType="touchUpInside" id="t7A-8i-uHT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9T-a3-R0x">
-                                <rect key="frame" x="113" y="529" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="扬声"/>
-                                <connections>
-                                    <action selector="speakerButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="iPn-XB-ay3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsD-WL-LYh">
-                                <rect key="frame" x="197" y="529" width="46" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="麦克"/>
-                                <connections>
-                                    <action selector="micButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="RAd-kT-Lr6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFF-GW-zFa">
-                                <rect key="frame" x="278" y="529" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="摄像"/>
-                                <connections>
-                                    <action selector="cameraButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="A9I-K9-Sz5"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi3-wO-zp0">
+                                <rect key="frame" x="26" y="524" width="323" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pH-LT-DZL">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <state key="normal" backgroundImage="挂断"/>
+                                        <connections>
+                                            <action selector="endCallBtnClicked:" destination="urI-J8-xfp" eventType="touchUpInside" id="t7A-8i-uHT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFF-GW-zFa">
+                                        <rect key="frame" x="263" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="扬声器"/>
+                                        <connections>
+                                            <action selector="cameraButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="A9I-K9-Sz5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9T-a3-R0x">
+                                        <rect key="frame" x="88" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="扬声器-开启"/>
+                                        <connections>
+                                            <action selector="speakerButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="iPn-XB-ay3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsD-WL-LYh">
+                                        <rect key="frame" x="175" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="关闭麦克风-开启"/>
+                                        <connections>
+                                            <action selector="micButtonAction:" destination="urI-J8-xfp" eventType="touchUpInside" id="RAd-kT-Lr6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="CRt-y7-b9g"/>
+                                    <constraint firstAttribute="width" constant="323" id="sjv-ph-Z46"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gi3-wO-zp0" firstAttribute="centerX" secondItem="oZw-xp-i2d" secondAttribute="centerX" id="PF0-5Q-Wxq"/>
+                            <constraint firstItem="9oV-T2-82V" firstAttribute="top" secondItem="Gi3-wO-zp0" secondAttribute="bottom" constant="83" id="Pew-S4-nHo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Active Call" id="gaC-Ky-JTV">
                         <barButtonItem key="backBarButtonItem" title="Back" id="92y-vh-j8o"/>
@@ -464,6 +478,12 @@
             <point key="canvasLocation" x="-122.40000000000001" y="259.52023988005999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="关闭麦克风-开启" width="60" height="60"/>
+        <image name="扬声器" width="60" height="60"/>
+        <image name="扬声器-开启" width="60" height="60"/>
+        <image name="挂断" width="60" height="60"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7ef-yP-ZvA"/>
     </inferredMetricsTieBreakers>
