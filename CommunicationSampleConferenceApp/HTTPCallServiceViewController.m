@@ -70,11 +70,11 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
         
     NSString *ID = self.conferenceIDTextField.text ;
         
-//    if(![CTRegex is6Number:ID] ) {
-//
-//        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"]];
-//        return;
-//    }
+    if(![CTRegex is6Number:ID] ) {
+
+        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"]];
+        return;
+    }
     
     [self performSegueWithIdentifier:@"videoCallSegue" sender:nil] ;
 //    [self prepareForSegue:self.videoCallSegue sender:nil];
@@ -172,10 +172,14 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
      oneTimePin: @""
      completionHandler:
      ^(CSUnifiedPortalMeetingInfo *meetingInfo, NSError *error)
-     {
+        {
          if(error != nil)
          {
-             self.messageLabel.text = [NSString stringWithFormat:@"Join failed with error: %@", [error localizedDescription]];
+//             self.messageLabel.text = [NSString stringWithFormat:@"Join failed with error: %@", [error localizedDescription]];
+             
+              
+             [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"还未到指定探视时间"]];
+
          }
          else
          {
@@ -289,13 +293,18 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
     ConfigData *configuration = [ConfigData getInstance];
     
     configuration.conferenceURL = [NSString stringWithFormat:@"%@%@",kConferenceURLDefault,self.conferenceIDTextField.text];
+    
+//    configuration.conferenceURL =  @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=70005" ;
     configuration.loginAsGuest = self.guestLoginSwitch.on;
-    configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"SampleConferenceAppUser";
+    configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"CHIT";
     configuration.conferenceUsername = self.conferenceUsernameTextField.text;
     configuration.conferencePassword = self.conferencePasswordTextField.text;
     [configuration saveConfiguration];
     return configuration;
 }
 
+//https://conferencing1.brightel.com.cn
+//测试会议ID：299999和299998 两个。
+//“您的姓名”可以默认写一个，CHIT也可以的。或者LSS（雷神山缩写）
 @end
 
