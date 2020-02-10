@@ -7,7 +7,5 @@ target 'CommunicationSampleConferenceApp' do
 
   # Pods for CommunicationSampleConferenceApp
 
-  pod 'Pgyer'
-  pod 'PgyUpdate'
 
 end
