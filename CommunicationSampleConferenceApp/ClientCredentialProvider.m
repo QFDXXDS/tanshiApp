@@ -67,7 +67,7 @@ completionHandler {
         NSLog(@"%s %@ %@ Missing password when hash value (%@) is not acceptable!",
               __PRETTY_FUNCTION__, self.idInfo, challenge, _ha1String);
         NSLog(@"%s Prompt user for credentials and save it for further processing in completionHandler", __PRETTY_FUNCTION__);
-        [NotificationHelper displayMessageToUser: @"Implement Password prompt for user credentials" TAG: __PRETTY_FUNCTION__];
+//        [NotificationHelper displayMessageToUser: @"Implement Password prompt for user credentials" TAG: __PRETTY_FUNCTION__];
         completionHandler(nil);
         return;
     }

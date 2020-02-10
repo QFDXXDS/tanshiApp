@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		088CBF29A3801E180560C88B /* Pods_CommunicationSampleConferenceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2840B08EC537F4AED060FD /* Pods_CommunicationSampleConferenceApp.framework */; };
 		3E8017E2207E3C36008925EE /* CSCall+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8017E1207E3C36008925EE /* CSCall+Additions.m */; };
+		9BCBD5E123F0F94B00E6B9A2 /* UIViewController+AutoRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCBD5DF23F0F94B00E6B9A2 /* UIViewController+AutoRotation.m */; };
 		DB1244881DD5905800350476 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1244871DD5905800350476 /* Constants.m */; };
 		DB2DFEB71DA282FA000D5E4E /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DFEB61DA282FA000D5E4E /* AboutViewController.m */; };
 		DB4DCFC01D73F44300274E16 /* ConferenceControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DCFBF1D73F44300274E16 /* ConferenceControlViewController.m */; };
@@ -56,6 +57,9 @@
 		3E8017E0207E3C35008925EE /* CSCall+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CSCall+Additions.h"; sourceTree = "<group>"; };
 		3E8017E1207E3C36008925EE /* CSCall+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CSCall+Additions.m"; sourceTree = "<group>"; };
 		3FA8824EA688CB1D45CEE0F6 /* Pods-CommunicationSampleConferenceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommunicationSampleConferenceApp.debug.xcconfig"; path = "Target Support Files/Pods-CommunicationSampleConferenceApp/Pods-CommunicationSampleConferenceApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9BCBD5DE23F0F94B00E6B9A2 /* UIViewController+AutoRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutoRotation.h"; sourceTree = "<group>"; };
+		9BCBD5DF23F0F94B00E6B9A2 /* UIViewController+AutoRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutoRotation.m"; sourceTree = "<group>"; };
+		9BCBD5E023F0F94B00E6B9A2 /* AutoRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRotation.h; sourceTree = "<group>"; };
 		AC2840B08EC537F4AED060FD /* Pods_CommunicationSampleConferenceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommunicationSampleConferenceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1244861DD5905800350476 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DB1244871DD5905800350476 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -121,6 +125,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9BCBD5DC23F0F93100E6B9A2 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9BCBD5DD23F0F94B00E6B9A2 /* AutoRotation */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		9BCBD5DD23F0F94B00E6B9A2 /* AutoRotation */ = {
+			isa = PBXGroup;
+			children = (
+				9BCBD5DE23F0F94B00E6B9A2 /* UIViewController+AutoRotation.h */,
+				9BCBD5DF23F0F94B00E6B9A2 /* UIViewController+AutoRotation.m */,
+				9BCBD5E023F0F94B00E6B9A2 /* AutoRotation.h */,
+			);
+			path = AutoRotation;
+			sourceTree = "<group>";
+		};
 		C9784BE22118EBF400E12124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +175,7 @@
 		EE5010BB1D0AD94B006552A7 /* CommunicationSampleConferenceApp */ = {
 			isa = PBXGroup;
 			children = (
+				9BCBD5DC23F0F93100E6B9A2 /* lib */,
 				EE5010EF1D0ADBFC006552A7 /* Resources */,
 				EE5011391D0ADF4E006552A7 /* helpers */,
 				EEA458C01D2BC8DB00265E85 /* AppDelegate.h */,
@@ -369,6 +392,7 @@
 				EEA458EA1D2BCA0D00265E85 /* ActiveCallViewController.m in Sources */,
 				DB2DFEB71DA282FA000D5E4E /* AboutViewController.m in Sources */,
 				EEA458D11D2BC92D00265E85 /* ClientCredentialProvider.m in Sources */,
+				9BCBD5E123F0F94B00E6B9A2 /* UIViewController+AutoRotation.m in Sources */,
 				3E8017E2207E3C36008925EE /* CSCall+Additions.m in Sources */,
 				DB4DCFC01D73F44300274E16 /* ConferenceControlViewController.m in Sources */,
 				EEA458D71D2BC9D200265E85 /* ConfigData.m in Sources */,
@@ -497,6 +521,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";
@@ -517,6 +542,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";

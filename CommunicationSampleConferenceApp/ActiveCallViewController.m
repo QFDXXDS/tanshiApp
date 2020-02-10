@@ -6,6 +6,11 @@
 
 #import "ActiveCallViewController.h"
 #import "ConferenceControlViewController.h"
+#import "UIViewController+AutoRotation.h"
+
+#define SCREEN_WIDTH     [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT    [UIScreen mainScreen].bounds.size.height
+
 
 @interface ActiveCallViewController ()
 
@@ -20,28 +25,38 @@
 
 @implementation ActiveCallViewController
 
+- (UIInterfaceOrientationMask)ar_supportedOrientations {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
-    
     self.navigationController.navigationBarHidden = YES;
+}
+- (void)statusBar:(NSNotification *)notification {
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+        NSLog(@"横屏");
+        self.remoteVideoView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9);
+        self.remoteVideoView.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    }else if (orientation == UIDeviceOrientationPortrait) {
+        NSLog(@"竖屏");
+        self.remoteVideoView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9);
+        self.remoteVideoView.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50);
+    }
     
 }
 
-
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    
-    [self setBorderWidth:self.endCallBtn];
-    [self setBorderWidth:self.holdCallBtn];
-    
-    self.participantList.layer.borderWidth = 0.5f;
-    
-    self.title = @"Active Call";
-    
-    NSLog(@"%s Received call object from segue: [%@]", __PRETTY_FUNCTION__, self.currentCall);
     
     // Register for call state change notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:kRefreshActiveCallWindowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBar:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    self.remoteVideoView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9);
+    self.remoteVideoView.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50);
+    
     
     // Display current call status
     self.callState.text = @"";
@@ -489,13 +504,13 @@
     
     if (self.cameraButton.selected) {
         
-        [self.cameraButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         self.cameraButton.selected = NO;
+        [self.mediaManager.videoCapturer useVideoCameraAtPosition:CSVideoCameraPositionFront completion:nil];
         
     }else {
         
-        [self.cameraButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         self.cameraButton.selected = YES;
+        [self.mediaManager.videoCapturer useVideoCameraAtPosition:CSVideoCameraPositionBack completion:nil];
     }
     
 }
