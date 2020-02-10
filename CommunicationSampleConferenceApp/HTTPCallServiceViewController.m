@@ -12,6 +12,8 @@
 #import "ConfigData.h"
 #import "CTRegex.h"
 #import "GNAudio.h"
+#import "AFNetworking.h"
+
 
 
 #define CHIT_LSS @"CHIT_LSS"
@@ -70,6 +72,7 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
     });
     
     self.titleLabel.text = kTanShiName ;
+    [self setAFNetwork];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -344,5 +347,31 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
 //https://conferencing1.brightel.com.cn
 //测试会议ID：299999和299998 两个。
 //“您的姓名”可以默认写一个，CHIT也可以的。或者LSS（雷神山缩写）
+
+- (void)setAFNetwork {
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+}
+
+- (void)reachabilityDidChange:(NSNotification *)noti {
+    AFNetworkReachabilityStatus status = [noti.userInfo[AFNetworkingReachabilityNotificationStatusItem] integerValue];
+    
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+            break;
+        case AFNetworkReachabilityStatusNotReachable:
+            
+            [NotificationHelper displayToastToUser:@"网络已断开，请重新连接网络" complete:nil] ;
+            break;
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            break;
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            break;
+        default:
+            break;
+    }
+}
+
 @end
 
