@@ -31,6 +31,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
+    
 }
 - (void)statusBar:(NSNotification *)notification {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -53,6 +54,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:kRefreshActiveCallWindowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBar:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(audioRouteChangeListenerCallback:)
+     name:AVAudioSessionRouteChangeNotification
+     object:[AVAudioSession sharedInstance]];
     
     self.remoteVideoView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9);
     self.remoteVideoView.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50);
@@ -82,22 +89,13 @@
         self.participantList.text = self.currentCall.remoteDisplayName;
     }
     
-    if (self.mediaManager.audioInterface.isSpeakerConnected) {
-        
-        NSLog(@"%s AudioDevice: Only Speaker device is available", __PRETTY_FUNCTION__);
-        self.speakerPhoneSwitch.enabled = NO;
-        [self.speakerPhoneSwitch setOn:YES];
-    } else {
-        
-        self.speakerPhoneSwitch.enabled = YES;
-        [self.speakerPhoneSwitch setOn:NO];
-        if (self.mediaManager.audioInterface.isHeadsetConnected) {
-            
-            NSLog(@"%s AudioDevice: Wired headset is connected to phone", __PRETTY_FUNCTION__);
-        } else if (self.mediaManager.audioInterface.isBluetoothConnected) {
-            
-            NSLog(@"%s AudioDevice: Bluetooth is connected to phone", __PRETTY_FUNCTION__);
-        }
+    
+    [self speakerOpen];
+    
+    if ([self isHeadSetPlugging]) {
+        [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器"] forState:UIControlStateNormal];
+        self.speakerButton.selected = YES;
+        self.speakerButton.userInteractionEnabled = NO;
     }
     
     //Hide keyboard once clicked outside of Phone Pad
@@ -106,6 +104,51 @@
                 action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:self.tap];
+}
+
+- (void)audioRouteChangeListenerCallback:(NSNotification *)notification {
+    NSDictionary *interuptionDict = notification.userInfo;
+    NSInteger routeChangeReason   = [[interuptionDict
+                                      valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+            //插入耳机时关闭扬声器播放
+            self.speakerButton.userInteractionEnabled = NO;
+            break;
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+            //拔出耳机时的处理为开启扬声器播放
+            self.speakerButton.userInteractionEnabled = YES;
+            break;
+        case AVAudioSessionRouteChangeReasonCategoryChange:
+            // called at start - also when other audio wants to play
+            NSLog(@"AVAudioSessionRouteChangeReasonCategoryChange");
+            break;
+    }
+}
+
+- (BOOL)isHeadSetPlugging {
+    AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
+    for (AVAudioSessionPortDescription* desc in [route outputs]) {
+        if ([[desc portType] isEqualToString:AVAudioSessionPortHeadphones])
+            return YES;
+    }
+    return NO;
+}
+
+- (void)speakerOpen {
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.0 * NSEC_PER_SEC));
+    
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        if (![self isHeadSetPlugging]) {
+            for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
+                if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
+                    [self.mediaManager setSpeaker:speaker];
+                    break;
+                }
+            }
+        }
+    });
+    
 }
 
 - (void)dealloc {
@@ -192,19 +235,19 @@
 }
 
 - (IBAction)speakerPhoneSwitchValueChanged:(id)sender {
-    
+
     if (self.speakerPhoneSwitch.on) {
-        
+
         for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
-            
+
             if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
-                
+
                 [self.mediaManager setSpeaker:speaker];
                 break;
             }
         }
     }else {
-        
+
         [self.mediaManager setSpeaker:nil];
     }
 }
@@ -432,18 +475,18 @@
         for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
             
             if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
-                
                 [self.mediaManager setSpeaker:speaker];
                 break;
             }
         }
         
-    }else {
         
+    }else {
         [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器"] forState:UIControlStateNormal];
         self.speakerButton.selected = YES;
         [self.mediaManager setSpeaker:nil];
 
+       
     }
     
 }
@@ -452,31 +495,8 @@
     
     if (self.micButton.selected) {
         
-        [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
-        self.micButton.selected = NO;
-        if(self.currentCall.muteCapability.allowed) {
-            
-            NSLog(@"%s Call audio can be muted", __PRETTY_FUNCTION__);
-            
-            [self.currentCall muteAudio: YES completionHandler:^(NSError *error) {
-                
-                if(error) {
-                    
-                    [NotificationHelper displayMessageToUser:[NSString stringWithFormat:@"Error while muting audio of call, callId: [%lu]", (long)self.currentCall.callId] TAG:__PRETTY_FUNCTION__];
-                } else {
-                    
-                    NSLog(@"%s Audio Mute succesfful for call, callId: [%lu]", __PRETTY_FUNCTION__, (long)self.currentCall.callId);
-                }
-            }];
-        } else {
-            
-            NSLog(@"%s Call audio cannot be muted", __PRETTY_FUNCTION__);
-        }
-        
-    }else {
-        
         [self.micButton setBackgroundImage:[UIImage imageNamed:@"麦克风"] forState:UIControlStateNormal];
-        self.micButton.selected = YES;
+        self.micButton.selected = NO;
         
         if(self.currentCall.unmuteCapability.allowed && self.currentCall.audioMuted) {
             
@@ -496,6 +516,32 @@
             
             NSLog(@"%s Call audio cannot be unmuted", __PRETTY_FUNCTION__);
         }
+        
+    }else {
+        
+        [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
+        self.micButton.selected = YES;
+        
+        if(self.currentCall.muteCapability.allowed) {
+            
+            NSLog(@"%s Call audio can be muted", __PRETTY_FUNCTION__);
+            
+            [self.currentCall muteAudio: YES completionHandler:^(NSError *error) {
+                
+                if(error) {
+                    
+                    [NotificationHelper displayMessageToUser:[NSString stringWithFormat:@"Error while muting audio of call, callId: [%lu]", (long)self.currentCall.callId] TAG:__PRETTY_FUNCTION__];
+                } else {
+                    
+                    NSLog(@"%s Audio Mute succesfful for call, callId: [%lu]", __PRETTY_FUNCTION__, (long)self.currentCall.callId);
+                }
+            }];
+        } else {
+            
+            NSLog(@"%s Call audio cannot be muted", __PRETTY_FUNCTION__);
+        }
+        
+        
     }
     
 }
