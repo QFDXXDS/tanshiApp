@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *conferencePasswordTextField;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *conferenceIDTextField;
 
 @property (nonatomic, weak) CSCallService *callService;

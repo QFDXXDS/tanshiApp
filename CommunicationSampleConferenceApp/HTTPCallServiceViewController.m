@@ -13,6 +13,16 @@
 #import "CTRegex.h"
 
 
+#define CHIT_LSS @"CHIT_LSS"
+//#define CHIT_HSS @"CHIT_HSS"
+
+#if defined(CHIT_LSS)
+NSString *const kTanShiName= @"雷神山医院探视系统";
+#else
+NSString *const kTanShiName= @"火神山医院探视系统";
+#endif
+
+
 NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
 
 @interface HTTPCallServiceViewController ()
@@ -23,6 +33,8 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
 @end
 
 @implementation HTTPCallServiceViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,7 +66,7 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
         [[SDKManager getInstance] setupClient];
     });
     
-    
+    self.titleLabel.text = kTanShiName ;
 }
 
 - (void)dealloc{
@@ -296,7 +308,7 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
     
 //    configuration.conferenceURL =  @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=70005" ;
     configuration.loginAsGuest = self.guestLoginSwitch.on;
-    configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"CHIT";
+    configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"Guest";
     configuration.conferenceUsername = self.conferenceUsernameTextField.text;
     configuration.conferencePassword = self.conferencePasswordTextField.text;
     [configuration saveConfiguration];
