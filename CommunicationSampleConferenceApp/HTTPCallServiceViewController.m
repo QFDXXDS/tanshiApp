@@ -11,6 +11,7 @@
 #import "NotificationHelper.h"
 #import "ConfigData.h"
 #import "CTRegex.h"
+#import "GNAudio.h"
 
 
 #define CHIT_LSS @"CHIT_LSS"
@@ -69,6 +70,11 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
     self.titleLabel.text = kTanShiName ;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+}
+
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kRefreshWindowNotification object:nil];
@@ -84,10 +90,15 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
         
     if(![CTRegex is6Number:ID] ) {
 
-        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"]];
+        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"] complete:nil];
         return;
     }
     
+    if (![GNAudio audioAndVideoAuthor]) {
+        return ;
+    }
+//    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self performSegueWithIdentifier:@"videoCallSegue" sender:nil] ;
 //    [self prepareForSegue:self.videoCallSegue sender:nil];
         
@@ -96,7 +107,6 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
 
 - (void)dismissKeyboard {
     [self.conferenceURLTextField resignFirstResponder];
-    
     [self.conferenceIDTextField resignFirstResponder];
 
 }
@@ -190,7 +200,7 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
 //             self.messageLabel.text = [NSString stringWithFormat:@"Join failed with error: %@", [error localizedDescription]];
              
               
-             [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"还未到指定探视时间"]];
+             [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"还未到指定探视时间"] complete:nil];
 
          }
          else

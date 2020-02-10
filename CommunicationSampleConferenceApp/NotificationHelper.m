@@ -39,7 +39,7 @@
     [rootView presentViewController:attentionAlert animated:YES completion:nil];
 }
 
-+ (void) displayToastToUser: (NSString *) msg {
++ (void) displayToastToUser: (NSString *) msg complete:(void (^)(void))complete  {
     
     NSLog(@"Toast: %@", msg);
     
@@ -54,7 +54,10 @@
     
     UIAlertController *toast = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil] ;
+    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        complete ? complete() : nil ;
+    }] ;
     [toast addAction:ac];
     //Display alert view window
     

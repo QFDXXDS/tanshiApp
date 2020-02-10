@@ -14,6 +14,6 @@
 @interface NotificationHelper : NSObject
 
 + (void)displayMessageToUser:(NSString *)msg TAG:(const char[])tag;
-+ (void)displayToastToUser:(NSString *)msg;
++ (void) displayToastToUser: (NSString *) msg complete:(void (^)(void))complete  ;
 
 @end
