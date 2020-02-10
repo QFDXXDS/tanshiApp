@@ -25,6 +25,8 @@ NSString *const kTanShiName= @"火神山医院探视系统";
 
 
 NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
+NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
+
 
 @interface HTTPCallServiceViewController ()
 
@@ -90,18 +92,16 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
         
     if(![CTRegex is6Number:ID] ) {
 
-        [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"输入会议ID不正确，请检查"] complete:nil];
+        [NotificationHelper displayToastToUser:kIDErrorDesc complete:nil];
         return;
     }
-    
     if (![GNAudio audioAndVideoAuthor]) {
+
         return ;
     }
-//    
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    [self performSegueWithIdentifier:@"videoCallSegue" sender:nil] ;
+    [self gotoActiveCall] ;
+
 //    [self prepareForSegue:self.videoCallSegue sender:nil];
-        
     
 }
 
@@ -116,6 +116,21 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
     btn.layer.borderWidth = 0.5f;
 }
 
+- (void)gotoActiveCall {
+    
+    
+    [self createCallWithCompletionHandler:^(NSError *error) {
+    
+        if (error == nil) {
+            
+            [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+            [self performSegueWithIdentifier:@"videoCallSegue" sender:nil] ;
+        
+        }
+ 
+    }] ;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     
@@ -127,26 +142,15 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
     
     if ([segue.identifier isEqualToString:@"audioCallSegue"]) {
         NSLog(@"%s Perform Audio call segue", __PRETTY_FUNCTION__);
-        [self createCallWithCompletionHandler:^(NSError *error) {
-            if (error == nil) {
-                NSLog(@"%s currentCall = [%@]", __PRETTY_FUNCTION__, self.currentCall);
-                [self audioCall];
-                transferViewController.currentCall = self.currentCall;
-            } else {
-                [transferViewController dismissViewControllerAnimated:YES completion:nil];
-            }
-        }];
+        NSLog(@"%s currentCall = [%@]", __PRETTY_FUNCTION__, self.currentCall);
+        [self audioCall];
+        transferViewController.currentCall = self.currentCall;
+            
     } else if ([segue.identifier isEqualToString:@"videoCallSegue"]) {
         NSLog(@"%s Perform Video call segue", __PRETTY_FUNCTION__);
-        [self createCallWithCompletionHandler:^(NSError *error) {
-            if (error == nil) {
-                NSLog(@"%s currentCall = [%@]", __PRETTY_FUNCTION__, self.currentCall);
-                [self videoCall];
-                transferViewController.currentCall = self.currentCall;
-            } else {
-                [transferViewController dismissViewControllerAnimated:YES completion:nil];
-            }
-        }];
+        NSLog(@"%s currentCall = [%@]", __PRETTY_FUNCTION__, self.currentCall);
+        [self videoCall];
+        transferViewController.currentCall = self.currentCall;
     }
 }
 
@@ -199,9 +203,21 @@ NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/
          {
 //             self.messageLabel.text = [NSString stringWithFormat:@"Join failed with error: %@", [error localizedDescription]];
              
-              
-             [NotificationHelper displayToastToUser:[NSString stringWithFormat:@"还未到指定探视时间"] complete:nil];
-
+            NSString *desc = @"" ;
+            NSInteger code = error.code ;
+            switch (code) {
+                case 27:
+                    desc = kIDErrorDesc ;
+                    break;
+                case -1:
+                    desc = @"网络异常，无法进入会议室" ;
+                    break;
+                default:
+                    desc = @"还未到指定探视时间" ;
+                    break;
+            }
+             [NotificationHelper displayToastToUser:desc complete:nil];
+             
          }
          else
          {

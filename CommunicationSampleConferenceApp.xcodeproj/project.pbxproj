@@ -36,6 +36,14 @@
 		F087F32023EE9E30004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F087F32523F03311004FBB4A /* CTRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F32423F03311004FBB4A /* CTRegex.m */; };
 		F087F32823F157BA004FBB4A /* GNAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F32723F157BA004FBB4A /* GNAudio.m */; };
+		F087F32A23F16942004FBB4A /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F32923F16942004FBB4A /* PgySDK.framework */; };
+		F087F32C23F1694C004FBB4A /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F32B23F1694C004FBB4A /* PgyUpdate.framework */; };
+		F087F32E23F16994004FBB4A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F32D23F16994004FBB4A /* CoreTelephony.framework */; };
+		F087F33023F169A4004FBB4A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F32F23F169A4004FBB4A /* SystemConfiguration.framework */; };
+		F087F33223F169B0004FBB4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F33123F169B0004FBB4A /* AudioToolbox.framework */; };
+		F087F33423F169BC004FBB4A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F33323F169BC004FBB4A /* AVFoundation.framework */; };
+		F087F33623F169E0004FBB4A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F33523F169E0004FBB4A /* OpenGLES.framework */; };
+		F087F33823F169F2004FBB4A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F33723F169F2004FBB4A /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +110,14 @@
 		F087F32423F03311004FBB4A /* CTRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRegex.m; sourceTree = "<group>"; };
 		F087F32623F157B3004FBB4A /* GNAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNAudio.h; sourceTree = "<group>"; };
 		F087F32723F157BA004FBB4A /* GNAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAudio.m; sourceTree = "<group>"; };
+		F087F32923F16942004FBB4A /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		F087F32B23F1694C004FBB4A /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
+		F087F32D23F16994004FBB4A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F087F32F23F169A4004FBB4A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F087F33123F169B0004FBB4A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F087F33323F169BC004FBB4A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F087F33523F169E0004FBB4A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		F087F33723F169F2004FBB4A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +125,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F087F33823F169F2004FBB4A /* CoreMotion.framework in Frameworks */,
+				F087F33623F169E0004FBB4A /* OpenGLES.framework in Frameworks */,
+				F087F33423F169BC004FBB4A /* AVFoundation.framework in Frameworks */,
+				F087F33223F169B0004FBB4A /* AudioToolbox.framework in Frameworks */,
+				F087F33023F169A4004FBB4A /* SystemConfiguration.framework in Frameworks */,
+				F087F32E23F16994004FBB4A /* CoreTelephony.framework in Frameworks */,
+				F087F32C23F1694C004FBB4A /* PgyUpdate.framework in Frameworks */,
+				F087F32A23F16942004FBB4A /* PgySDK.framework in Frameworks */,
 				F087F31D23EE9E22004FBB4A /* RVVideoCodec.framework in Frameworks */,
 				F087F31B23EE9E09004FBB4A /* AvayaClientServices.framework in Frameworks */,
 				F087F31F23EE9E30004FBB4A /* AvayaClientMedia.framework in Frameworks */,
@@ -149,6 +173,14 @@
 		C9784BE22118EBF400E12124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F087F33723F169F2004FBB4A /* CoreMotion.framework */,
+				F087F33523F169E0004FBB4A /* OpenGLES.framework */,
+				F087F33323F169BC004FBB4A /* AVFoundation.framework */,
+				F087F33123F169B0004FBB4A /* AudioToolbox.framework */,
+				F087F32F23F169A4004FBB4A /* SystemConfiguration.framework */,
+				F087F32D23F16994004FBB4A /* CoreTelephony.framework */,
+				F087F32B23F1694C004FBB4A /* PgyUpdate.framework */,
+				F087F32923F16942004FBB4A /* PgySDK.framework */,
 				F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */,
 				F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */,
 				F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */,
