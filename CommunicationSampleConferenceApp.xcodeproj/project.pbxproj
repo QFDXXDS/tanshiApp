@@ -393,10 +393,10 @@
 		F087F34D23F17F2E004FBB4A /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				F087F35123F17F2E004FBB4A /* AFURLRequestSerialization.h */,
 				F087F34E23F17F2E004FBB4A /* AFSecurityPolicy.h */,
 				F087F34F23F17F2E004FBB4A /* AFNetworkReachabilityManager.h */,
 				F087F35023F17F2E004FBB4A /* AFURLSessionManager.h */,
-				F087F35123F17F2E004FBB4A /* AFURLRequestSerialization.h */,
 				F087F35223F17F2E004FBB4A /* AFURLResponseSerialization.m */,
 				F087F35323F17F2E004FBB4A /* AFHTTPSessionManager.m */,
 				F087F35423F17F2E004FBB4A /* AFURLResponseSerialization.h */,

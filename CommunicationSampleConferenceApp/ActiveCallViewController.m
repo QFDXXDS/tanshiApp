@@ -108,18 +108,22 @@
     
     [self.view addGestureRecognizer:self.tap];
     
-    if ([GNAudio audioAuthor] == 2) {
-        [WHToast showMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:3 finishHandler:^{
-            [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
-            self.micButton.selected = YES;
-        }];
-    }
-    
-    if ([GNAudio videoAuthor] == 2) {
-        [WHToast showMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:3 finishHandler:^{
-            
-        }];
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if ([GNAudio audioAuthor] == 2) {
+            [WHToast showMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:3 finishHandler:^{
+                [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
+                self.micButton.selected = YES;
+            }];
+        }
+        
+        if ([GNAudio videoAuthor] == 2) {
+            [WHToast showMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:3 finishHandler:^{
+                
+            }];
+        }
+
+    });
     
 }
 
