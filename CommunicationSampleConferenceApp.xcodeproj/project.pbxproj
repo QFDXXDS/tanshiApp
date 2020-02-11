@@ -28,12 +28,6 @@
 		EEEE10371D473CA800980F46 /* ringback.wav in Resources */ = {isa = PBXBuildFile; fileRef = EEEE10151D473CA800980F46 /* ringback.wav */; };
 		EEEE10471D474D8800980F46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEEE10431D474D8800980F46 /* LaunchScreen.storyboard */; };
 		EEEE10621D4B7C9E00980F46 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEE10611D4B7C9E00980F46 /* VideoView.m */; };
-		F087F31B23EE9E09004FBB4A /* AvayaClientServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */; };
-		F087F31C23EE9E09004FBB4A /* AvayaClientServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F087F31D23EE9E22004FBB4A /* RVVideoCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */; };
-		F087F31E23EE9E22004FBB4A /* RVVideoCodec.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F087F31F23EE9E30004FBB4A /* AvayaClientMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; };
-		F087F32023EE9E30004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F087F32523F03311004FBB4A /* CTRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F32423F03311004FBB4A /* CTRegex.m */; };
 		F087F32823F157BA004FBB4A /* GNAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F32723F157BA004FBB4A /* GNAudio.m */; };
 		F087F32A23F16942004FBB4A /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F32923F16942004FBB4A /* PgySDK.framework */; };
@@ -50,6 +44,12 @@
 		F087F35E23F17F2E004FBB4A /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F35623F17F2E004FBB4A /* AFURLRequestSerialization.m */; };
 		F087F35F23F17F2E004FBB4A /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F35823F17F2E004FBB4A /* AFNetworkReachabilityManager.m */; };
 		F087F36023F17F2E004FBB4A /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F087F35923F17F2E004FBB4A /* AFSecurityPolicy.m */; };
+		F087F36523F19E37004FBB4A /* AvayaClientMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; };
+		F087F36623F19E37004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31923EE9DC2004FBB4A /* AvayaClientMedia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F087F36723F19E3A004FBB4A /* AvayaClientServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */; };
+		F087F36823F19E3A004FBB4A /* AvayaClientServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31723EE9DBC004FBB4A /* AvayaClientServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F087F36923F19E40004FBB4A /* RVVideoCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */; };
+		F087F36A23F19E40004FBB4A /* RVVideoCodec.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F087F31523EE9DB1004FBB4A /* RVVideoCodec.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,9 +59,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F087F31C23EE9E09004FBB4A /* AvayaClientServices.framework in Embed Frameworks */,
-				F087F31E23EE9E22004FBB4A /* RVVideoCodec.framework in Embed Frameworks */,
-				F087F32023EE9E30004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */,
+				F087F36A23F19E40004FBB4A /* RVVideoCodec.framework in Embed Frameworks */,
+				F087F36823F19E3A004FBB4A /* AvayaClientServices.framework in Embed Frameworks */,
+				F087F36623F19E37004FBB4A /* AvayaClientMedia.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,15 +147,15 @@
 				F087F33823F169F2004FBB4A /* CoreMotion.framework in Frameworks */,
 				F087F33623F169E0004FBB4A /* OpenGLES.framework in Frameworks */,
 				F087F33423F169BC004FBB4A /* AVFoundation.framework in Frameworks */,
+				F087F36923F19E40004FBB4A /* RVVideoCodec.framework in Frameworks */,
 				F087F33223F169B0004FBB4A /* AudioToolbox.framework in Frameworks */,
 				F087F33023F169A4004FBB4A /* SystemConfiguration.framework in Frameworks */,
 				F087F32E23F16994004FBB4A /* CoreTelephony.framework in Frameworks */,
 				F087F32C23F1694C004FBB4A /* PgyUpdate.framework in Frameworks */,
 				F087F32A23F16942004FBB4A /* PgySDK.framework in Frameworks */,
-				F087F31D23EE9E22004FBB4A /* RVVideoCodec.framework in Frameworks */,
-				F087F31B23EE9E09004FBB4A /* AvayaClientServices.framework in Frameworks */,
-				F087F31F23EE9E30004FBB4A /* AvayaClientMedia.framework in Frameworks */,
 				088CBF29A3801E180560C88B /* Pods_CommunicationSampleConferenceApp.framework in Frameworks */,
+				F087F36723F19E3A004FBB4A /* AvayaClientServices.framework in Frameworks */,
+				F087F36523F19E37004FBB4A /* AvayaClientMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,11 +605,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
 			name = Debug;
 		};
@@ -626,11 +628,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
 			name = Release;
 		};
