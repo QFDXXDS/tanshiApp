@@ -10,6 +10,16 @@
 		088CBF29A3801E180560C88B /* Pods_CommunicationSampleConferenceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2840B08EC537F4AED060FD /* Pods_CommunicationSampleConferenceApp.framework */; };
 		3E8017E2207E3C36008925EE /* CSCall+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8017E1207E3C36008925EE /* CSCall+Additions.m */; };
 		9BCBD5E123F0F94B00E6B9A2 /* UIViewController+AutoRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCBD5DF23F0F94B00E6B9A2 /* UIViewController+AutoRotation.m */; };
+		9BF9779423F29BC800BDB957 /* whtoast_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778723F29BC800BDB957 /* whtoast_success.png */; };
+		9BF9779523F29BC800BDB957 /* whtoast_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778823F29BC800BDB957 /* whtoast_success@2x.png */; };
+		9BF9779623F29BC800BDB957 /* whtoast_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778923F29BC800BDB957 /* whtoast_success@3x.png */; };
+		9BF9779723F29BC800BDB957 /* whtoast_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778A23F29BC800BDB957 /* whtoast_error.png */; };
+		9BF9779823F29BC800BDB957 /* whtoast_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778B23F29BC800BDB957 /* whtoast_error@2x.png */; };
+		9BF9779923F29BC800BDB957 /* whtoast_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9778C23F29BC800BDB957 /* whtoast_error@3x.png */; };
+		9BF9779A23F29BC800BDB957 /* UIImage+WHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9779023F29BC800BDB957 /* UIImage+WHToast.m */; };
+		9BF9779B23F29BC800BDB957 /* WHToastConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9779123F29BC800BDB957 /* WHToastConfig.m */; };
+		9BF9779C23F29BC800BDB957 /* WHToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9779223F29BC800BDB957 /* WHToastView.m */; };
+		9BF9779D23F29BC800BDB957 /* WHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9779323F29BC800BDB957 /* WHToast.m */; };
 		DB1244881DD5905800350476 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1244871DD5905800350476 /* Constants.m */; };
 		DB2DFEB71DA282FA000D5E4E /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DFEB61DA282FA000D5E4E /* AboutViewController.m */; };
 		DB4DCFC01D73F44300274E16 /* ConferenceControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DCFBF1D73F44300274E16 /* ConferenceControlViewController.m */; };
@@ -75,6 +85,20 @@
 		9BCBD5DE23F0F94B00E6B9A2 /* UIViewController+AutoRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutoRotation.h"; sourceTree = "<group>"; };
 		9BCBD5DF23F0F94B00E6B9A2 /* UIViewController+AutoRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutoRotation.m"; sourceTree = "<group>"; };
 		9BCBD5E023F0F94B00E6B9A2 /* AutoRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRotation.h; sourceTree = "<group>"; };
+		9BF9778523F29BC800BDB957 /* UIImage+WHToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WHToast.h"; sourceTree = "<group>"; };
+		9BF9778723F29BC800BDB957 /* whtoast_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whtoast_success.png; sourceTree = "<group>"; };
+		9BF9778823F29BC800BDB957 /* whtoast_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whtoast_success@2x.png"; sourceTree = "<group>"; };
+		9BF9778923F29BC800BDB957 /* whtoast_success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whtoast_success@3x.png"; sourceTree = "<group>"; };
+		9BF9778A23F29BC800BDB957 /* whtoast_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whtoast_error.png; sourceTree = "<group>"; };
+		9BF9778B23F29BC800BDB957 /* whtoast_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whtoast_error@2x.png"; sourceTree = "<group>"; };
+		9BF9778C23F29BC800BDB957 /* whtoast_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whtoast_error@3x.png"; sourceTree = "<group>"; };
+		9BF9778D23F29BC800BDB957 /* WHToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHToastView.h; sourceTree = "<group>"; };
+		9BF9778E23F29BC800BDB957 /* WHToastConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHToastConfig.h; sourceTree = "<group>"; };
+		9BF9778F23F29BC800BDB957 /* WHToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHToast.h; sourceTree = "<group>"; };
+		9BF9779023F29BC800BDB957 /* UIImage+WHToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WHToast.m"; sourceTree = "<group>"; };
+		9BF9779123F29BC800BDB957 /* WHToastConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHToastConfig.m; sourceTree = "<group>"; };
+		9BF9779223F29BC800BDB957 /* WHToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHToastView.m; sourceTree = "<group>"; };
+		9BF9779323F29BC800BDB957 /* WHToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHToast.m; sourceTree = "<group>"; };
 		AC2840B08EC537F4AED060FD /* Pods_CommunicationSampleConferenceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommunicationSampleConferenceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1244861DD5905800350476 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DB1244871DD5905800350476 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -189,6 +213,35 @@
 			path = AutoRotation;
 			sourceTree = "<group>";
 		};
+		9BF9778423F29BC800BDB957 /* WHToast */ = {
+			isa = PBXGroup;
+			children = (
+				9BF9778523F29BC800BDB957 /* UIImage+WHToast.h */,
+				9BF9778623F29BC800BDB957 /* wtoast_icon */,
+				9BF9778D23F29BC800BDB957 /* WHToastView.h */,
+				9BF9778E23F29BC800BDB957 /* WHToastConfig.h */,
+				9BF9778F23F29BC800BDB957 /* WHToast.h */,
+				9BF9779023F29BC800BDB957 /* UIImage+WHToast.m */,
+				9BF9779123F29BC800BDB957 /* WHToastConfig.m */,
+				9BF9779223F29BC800BDB957 /* WHToastView.m */,
+				9BF9779323F29BC800BDB957 /* WHToast.m */,
+			);
+			path = WHToast;
+			sourceTree = "<group>";
+		};
+		9BF9778623F29BC800BDB957 /* wtoast_icon */ = {
+			isa = PBXGroup;
+			children = (
+				9BF9778723F29BC800BDB957 /* whtoast_success.png */,
+				9BF9778823F29BC800BDB957 /* whtoast_success@2x.png */,
+				9BF9778923F29BC800BDB957 /* whtoast_success@3x.png */,
+				9BF9778A23F29BC800BDB957 /* whtoast_error.png */,
+				9BF9778B23F29BC800BDB957 /* whtoast_error@2x.png */,
+				9BF9778C23F29BC800BDB957 /* whtoast_error@3x.png */,
+			);
+			path = wtoast_icon;
+			sourceTree = "<group>";
+		};
 		C9784BE22118EBF400E12124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +334,7 @@
 		EE5011401D0E82AD006552A7 /* Client Services */ = {
 			isa = PBXGroup;
 			children = (
+				9BF9778423F29BC800BDB957 /* WHToast */,
 				F087F34D23F17F2E004FBB4A /* AFNetworking */,
 				F087F32623F157B3004FBB4A /* GNAudio.h */,
 				F087F32723F157BA004FBB4A /* GNAudio.m */,
@@ -418,9 +472,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF9779423F29BC800BDB957 /* whtoast_success.png in Resources */,
 				EEEE10351D473CA800980F46 /* reorder.wav in Resources */,
+				9BF9779923F29BC800BDB957 /* whtoast_error@3x.png in Resources */,
+				9BF9779823F29BC800BDB957 /* whtoast_error@2x.png in Resources */,
 				DB891A501D6B3B8F00245F57 /* Main.storyboard in Resources */,
+				9BF9779723F29BC800BDB957 /* whtoast_error.png in Resources */,
+				9BF9779623F29BC800BDB957 /* whtoast_success@3x.png in Resources */,
 				EEA458C71D2BC8DB00265E85 /* Assets.xcassets in Resources */,
+				9BF9779523F29BC800BDB957 /* whtoast_success@2x.png in Resources */,
 				EEEE10471D474D8800980F46 /* LaunchScreen.storyboard in Resources */,
 				EEEE10371D473CA800980F46 /* ringback.wav in Resources */,
 			);
@@ -466,11 +526,14 @@
 				F087F32523F03311004FBB4A /* CTRegex.m in Sources */,
 				F087F35D23F17F2E004FBB4A /* AFURLSessionManager.m in Sources */,
 				EEA458D31D2BC92D00265E85 /* SDKManager.m in Sources */,
+				9BF9779B23F29BC800BDB957 /* WHToastConfig.m in Sources */,
 				DB1244881DD5905800350476 /* Constants.m in Sources */,
 				DF50643B2206CF30000E0491 /* HTTPCallServiceViewController.m in Sources */,
+				9BF9779C23F29BC800BDB957 /* WHToastView.m in Sources */,
 				EEA458BE1D2BC88E00265E85 /* NotificationHelper.m in Sources */,
 				EEA458C61D2BC8DB00265E85 /* AppDelegate.m in Sources */,
 				EEA458EA1D2BCA0D00265E85 /* ActiveCallViewController.m in Sources */,
+				9BF9779A23F29BC800BDB957 /* UIImage+WHToast.m in Sources */,
 				F087F35E23F17F2E004FBB4A /* AFURLRequestSerialization.m in Sources */,
 				F087F35B23F17F2E004FBB4A /* AFURLResponseSerialization.m in Sources */,
 				DB2DFEB71DA282FA000D5E4E /* AboutViewController.m in Sources */,
@@ -481,6 +544,7 @@
 				EEA458D71D2BC9D200265E85 /* ConfigData.m in Sources */,
 				F087F35F23F17F2E004FBB4A /* AFNetworkReachabilityManager.m in Sources */,
 				EEA458F41D2BCA2D00265E85 /* main.m in Sources */,
+				9BF9779D23F29BC800BDB957 /* WHToast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
