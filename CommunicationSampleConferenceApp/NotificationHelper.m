@@ -99,11 +99,11 @@
         
         done ? done() : nil ;
     }] ;
-    UIAlertAction *cancelAc = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        cancel ? cancel() : nil ;
-    }] ;
-
-    [toast addAction:cancelAc];
+//    UIAlertAction *cancelAc = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        cancel ? cancel() : nil ;
+//    }] ;
+//
+//    [toast addAction:cancelAc];
     [toast addAction:doneAc];
 
     //Display alert view window

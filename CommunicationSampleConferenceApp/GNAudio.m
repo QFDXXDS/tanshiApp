@@ -28,13 +28,17 @@ extern NSString *const kGetMediaAuthority ;
 
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
 
-            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
 
-                [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:kGetMediaAuthority] ;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    complete();
-                });
-            }];
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+
+                    [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:kGetMediaAuthority] ;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        complete();
+                    });
+                }];
+            });
+
         }];
     }
 }

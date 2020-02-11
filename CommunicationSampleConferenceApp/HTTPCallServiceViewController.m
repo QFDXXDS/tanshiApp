@@ -122,19 +122,23 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
         
         [GNAudio requestAudioAndVideoAuthor:^{
             
-            [self gotoActiveCall] ;
+            [self checkAuthority];
         }];
-        
         return ;
     }
+    
+    [self checkAuthority];
+}
+
+
+- (void)checkAuthority {
+    
     [GNAudio audioAndVideoAuthor:^{
         
         [self gotoActiveCall] ;
 
     }] ;
-
     
-
 }
 
 - (void)dismissKeyboard {
