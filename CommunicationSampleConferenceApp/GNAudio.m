@@ -53,7 +53,7 @@
     }
     if (videoStatus == AVAuthorizationStatusDenied ) {
 
-        [NotificationHelper displayToastToUser:@"请打开相机风权限" complete:^{
+        [NotificationHelper displayToastToUser:@"请打开相机权限" complete:^{
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
 

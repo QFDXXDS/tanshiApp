@@ -45,15 +45,15 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>$(PRODUCT_NAME) uses media Library</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses bluetooth</string>
+	<string>允许应用使用蓝牙</string>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses camera</string>
+	<string>允许应用使用相机</string>
 	<key>NSContactsUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses contacts</string>
+	<string>允许应用使用联系人</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses microphone</string>
+	<string>允许应用使用麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses Photo Library</string>
+	<string>允许应用使用相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

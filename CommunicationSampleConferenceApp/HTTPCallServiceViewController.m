@@ -72,6 +72,7 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
     });
     
     self.titleLabel.text = kTanShiName ;
+    self.conferenceIDTextField.clearButtonMode = UITextFieldViewModeWhileEditing ;
     [self setAFNetwork];
 }
 
@@ -121,9 +122,11 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
 
 - (void)gotoActiveCall {
     
-    
+    UIActivityIndicatorView *_active = [self setActivityIndicator] ;
     [self createCallWithCompletionHandler:^(NSError *error) {
     
+        [_active stopAnimating];
+        [_active removeFromSuperview];
         if (error == nil) {
             
             [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -132,6 +135,23 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
         }
  
     }] ;
+}
+
+- (UIActivityIndicatorView *)setActivityIndicator {
+    
+    //创建
+    UIActivityIndicatorView *_active = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    _active.color = [UIColor redColor];
+    _active.frame = self.view.frame ;
+    //控件中心坐标
+    _active.center = self.view.center  ;
+    //开启动画
+    [_active startAnimating];
+    _active.hidesWhenStopped = YES;
+    //添加
+    [self.view addSubview:_active];
+
+    return  _active;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

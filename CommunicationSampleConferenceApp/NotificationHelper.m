@@ -70,11 +70,11 @@
 
     [rootView presentViewController:toast animated:YES completion:nil];
     
-    int duration = 2; // duration in seconds
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        
-        [toast dismissViewControllerAnimated:YES completion:nil];
-    });
+//    int duration = 2; // duration in seconds
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//
+//        [toast dismissViewControllerAnimated:YES completion:nil];
+//    });
 }
 
 @end
