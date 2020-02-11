@@ -109,13 +109,14 @@
     [self.view addGestureRecognizer:self.tap];
     
     if ([GNAudio audioAuthor] == 2) {
-        [WHToast showErrorWithMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:2 finishHandler:^{
+        [WHToast showMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:3 finishHandler:^{
             [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
             self.micButton.selected = YES;
         }];
     }
+    
     if ([GNAudio videoAuthor] == 2) {
-        [WHToast showErrorWithMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:2 finishHandler:^{
+        [WHToast showMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:3 finishHandler:^{
             
         }];
     }
@@ -534,7 +535,7 @@
 - (IBAction)micButtonAction:(id)sender {
     
     if ([GNAudio audioAuthor] == 2) {
-        [WHToast showErrorWithMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:2 finishHandler:^{
+        [WHToast showMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:2 finishHandler:^{
             [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
             
         }];
@@ -597,7 +598,7 @@
 - (IBAction)cameraButtonAction:(id)sender {
     
     if ([GNAudio videoAuthor] == 2) {
-        [WHToast showErrorWithMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:2 finishHandler:^{
+        [WHToast showMessage:@"摄像头权限关闭" originY:SCREEN_HEIGHT/2+150 duration:2 finishHandler:^{
             
         }];
         
