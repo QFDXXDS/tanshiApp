@@ -7,8 +7,10 @@
 //
 
 #import "GNAudio.h"
-#import <AVFoundation/AVFoundation.h>
 #import "NotificationHelper.h"
+
+extern NSString *const kGetMediaAuthority ;
+
 
 @implementation GNAudio
 
@@ -17,7 +19,7 @@
     
     return [AVAudioSession sharedInstance].otherAudioPlaying;
 }
-+ (void)audioAndVideoAuthor:(void (^)(void))complete {
++ (void)requestAudioAndVideoAuthor:(void (^)(void))complete {
     
     AVAuthorizationStatus audioStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] ;
     AVAuthorizationStatus videoStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] ;
@@ -26,42 +28,61 @@
 
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
 
-            complete();
-        }];
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
 
-            complete();
+                [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:kGetMediaAuthority] ;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    complete();
+                });
+            }];
         }];
-    } else {
-        complete();
     }
 }
 
-+ (BOOL)audioAndVideoAuthor {
++ (void)audioAndVideoAuthor:(void (^)(void))complete {
+    
+    if ([self audioAuthor] == AVAuthorizationStatusDenied || [self videoAuthor] == AVAuthorizationStatusDenied ) {
+
+        [NotificationHelper displayToastToUser:@"请打开麦克风和相机权限" done:^{
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
+
+        } cancel:^{
+            complete ? complete() : nil ;
+        } ] ;
+    } else {
+        
+        complete ? complete() : nil ;
+    }
+    
+//    if ([self videoAuthor] == AVAuthorizationStatusDenied ) {
+//
+//        [NotificationHelper displayToastToUser1:@"请打开相机权限" complete:^{
+//
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
+//
+//        }] ;
+//    }
+//
+}
+
+
+
++ (AVAuthorizationStatus)audioAuthor {
     
     AVAuthorizationStatus audioStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] ;
+
+    return audioStatus ;
+}
+
+
++ (AVAuthorizationStatus)videoAuthor {
+    
     AVAuthorizationStatus videoStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] ;
 
-    if (audioStatus == AVAuthorizationStatusDenied ) {
-
-        [NotificationHelper displayToastToUser:@"请打开麦克风权限" complete:^{
-            
-
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
-        }] ;
-        return NO ;
-    }
-    if (videoStatus == AVAuthorizationStatusDenied ) {
-
-        [NotificationHelper displayToastToUser:@"请打开相机权限" complete:^{
-            
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
-
-        }] ;
-        return NO ;
-    }
-    
-    return YES ;
+    return videoStatus ;
 }
+
+
 
 @end

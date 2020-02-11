@@ -14,7 +14,11 @@
 #import "GNAudio.h"
 #import "AFNetworking.h"
 
+#import <PgyUpdate/PgyUpdateManager.h>
 
+
+
+extern NSString *const PGY_APP_ID;
 
 #define CHIT_LSS @"CHIT_LSS"
 //#define CHIT_HSS @"CHIT_HSS"
@@ -28,6 +32,7 @@ NSString *const kTanShiName= @"火神山医院探视系统";
 
 NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
 NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
+NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 
 
 @interface HTTPCallServiceViewController ()
@@ -74,12 +79,16 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
     self.titleLabel.text = kTanShiName ;
     self.conferenceIDTextField.clearButtonMode = UITextFieldViewModeWhileEditing ;
     [self setAFNetwork];
+    [self setPGY];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
+
+    
 
 - (void)dealloc{
     
@@ -89,6 +98,14 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
 
     [self.view removeGestureRecognizer:self.tap];
 }
+
+- (void)setPGY {
+        //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+
+}
+
 - (IBAction)makeVideoCall:(UIButton *)sender {
     
         
@@ -99,14 +116,25 @@ NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
         [NotificationHelper displayToastToUser:kIDErrorDesc complete:nil];
         return;
     }
-    if (![GNAudio audioAndVideoAuthor]) {
-
+    
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kGetMediaAuthority]) {
+        
+        [GNAudio requestAudioAndVideoAuthor:^{
+            
+            [self gotoActiveCall] ;
+        }];
+        
         return ;
     }
-    [self gotoActiveCall] ;
+    [GNAudio audioAndVideoAuthor:^{
+        
+        [self gotoActiveCall] ;
 
-//    [self prepareForSegue:self.videoCallSegue sender:nil];
+    }] ;
+
     
+
 }
 
 - (void)dismissKeyboard {

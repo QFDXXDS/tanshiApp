@@ -7,13 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface GNAudio : NSObject
 
 + (BOOL)otherAudioPlaying ;
 
++ (void)requestAudioAndVideoAuthor:(void (^)(void))complete ;
+
 + (void)audioAndVideoAuthor:(void (^)(void))complete ;
 
-+ (BOOL)audioAndVideoAuthor ;
+
+
++ (AVAuthorizationStatus)audioAuthor ;
+
++ (AVAuthorizationStatus)videoAuthor ;
+    
 
 @end
