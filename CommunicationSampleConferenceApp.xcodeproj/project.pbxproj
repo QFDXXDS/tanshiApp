@@ -605,7 +605,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";
@@ -626,7 +626,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CommunicationSampleConferenceApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.tanshiApp;
 				PRODUCT_NAME = "雷神山探视";

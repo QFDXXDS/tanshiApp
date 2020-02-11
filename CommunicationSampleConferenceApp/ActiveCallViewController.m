@@ -92,7 +92,7 @@
     
     [self speakerOpen];
     
-    if ([self isHeadSetPlugging]) {
+    if ([self isHeadSetPlugging] || [self isBleToothOutput]) {
         [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器"] forState:UIControlStateNormal];
         self.speakerButton.selected = YES;
         self.speakerButton.userInteractionEnabled = NO;
@@ -113,11 +113,22 @@
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
             //插入耳机时关闭扬声器播放
+            [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器"] forState:UIControlStateNormal];
+            self.speakerButton.selected = YES;
             self.speakerButton.userInteractionEnabled = NO;
             break;
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
             //拔出耳机时的处理为开启扬声器播放
             self.speakerButton.userInteractionEnabled = YES;
+            [self.speakerButton setBackgroundImage:[UIImage imageNamed:@"扬声器-开启"] forState:UIControlStateNormal];
+            self.speakerButton.selected = NO;
+            for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
+                
+                if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
+                    [self.mediaManager setSpeaker:speaker];
+                    break;
+                }
+            }
             break;
         case AVAudioSessionRouteChangeReasonCategoryChange:
             // called at start - also when other audio wants to play
@@ -134,12 +145,25 @@
     }
     return NO;
 }
+-(BOOL)isBleToothOutput{
+    AVAudioSessionRouteDescription *currentRount = [AVAudioSession sharedInstance].currentRoute;
+    AVAudioSessionPortDescription *outputPortDesc = currentRount.outputs[0];
+    if([outputPortDesc.portType isEqualToString:@"BluetoothA2DPOutput"]){
+        NSLog(@"当前输出的线路是蓝牙输出，并且已连接");
+        return YES;
+    }else{
+        NSLog(@"当前是spearKer输出");
+        return NO;
+    }
+}
 
 - (void)speakerOpen {
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.0 * NSEC_PER_SEC));
     
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-        if (![self isHeadSetPlugging]) {
+        if ([self isHeadSetPlugging] || [self isBleToothOutput]) {
+            //有耳机设备
+        }else {
             for (CSSpeakerDevice *speaker in [[self.mediaManager audioInterface] availableAudioDevices]) {
                 if ([speaker.name isEqualToString:@"AudioDeviceSpeaker"]) {
                     [self.mediaManager setSpeaker:speaker];
