@@ -12,27 +12,16 @@
 #import "ConfigData.h"
 #import "CTRegex.h"
 #import "GNAudio.h"
-#import "AFNetworking.h"
+#import "CTAppInfo.h"
 
 #import <PgyUpdate/PgyUpdateManager.h>
 
-
-
-extern NSString *const PGY_APP_ID;
-
-#define CHIT_LSS @"CHIT_LSS"
-//#define CHIT_HSS @"CHIT_HSS"
-
-#if defined(CHIT_LSS)
-NSString *const kTanShiName= @"雷神山医院探视系统";
-#else
-NSString *const kTanShiName= @"火神山医院探视系统";
-#endif
-
-
-NSString *const kConferenceURLDefault = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
 NSString *const kIDErrorDesc = @"输入会议ID不正确，请检查";
 NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
+
+
+ extern NSString *const WZ_HSS_bundleId;
+
 
 
 @interface HTTPCallServiceViewController ()
@@ -76,11 +65,21 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
         [[SDKManager getInstance] setupClient];
     });
     
-    self.titleLabel.text = kTanShiName ;
+    self.titleLabel.text = [ConfigData getInstance].tanShi_Name ;
     self.conferenceIDTextField.clearButtonMode = UITextFieldViewModeWhileEditing ;
-    [self setAFNetwork];
     [self setPGY];
+    [self setUpUI];
+}
 
+
+- (void)setUpUI {
+
+    if ([[CTAppInfo appBundleId] isEqual:WZ_HSS_bundleId]) {
+        self.titleLabel.hidden = YES ;
+        self.idLabel.text = @"远程会诊探视ID：" ;
+        [self.makeVideoCallLabel setTitle:@"开始" forState:UIControlStateNormal ] ;
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,7 +100,7 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 
 - (void)setPGY {
         //启动更新检查SDK
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:[ConfigData getInstance].PGY_APP_ID];
     [[PgyUpdateManager sharedPgyManager] checkUpdate];
 
 }
@@ -110,11 +109,14 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
     
         
     NSString *ID = self.conferenceIDTextField.text ;
-        
-    if(![CTRegex is6Number:ID] ) {
+//     温州火神山不判断一下类容
+    if (![[CTAppInfo appBundleId] isEqual:WZ_HSS_bundleId]) {
+        if(![CTRegex is6Number:ID] ) {
 
-        [NotificationHelper displayToastToUser:kIDErrorDesc complete:nil];
-        return;
+            [NotificationHelper displayToastToUser:kIDErrorDesc complete:nil];
+            return;
+        }
+
     }
     
     
@@ -385,9 +387,8 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 - (ConfigData *)saveConfiguration {
     ConfigData *configuration = [ConfigData getInstance];
     
-    configuration.conferenceURL = [NSString stringWithFormat:@"%@%@",kConferenceURLDefault,self.conferenceIDTextField.text];
+    configuration.conferenceURL = [NSString stringWithFormat:@"%@%@",[ConfigData getInstance].conference_Default_URL,self.conferenceIDTextField.text];
     
-//    configuration.conferenceURL =  @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=70005" ;
     configuration.loginAsGuest = self.guestLoginSwitch.on;
     configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"Guest";
     configuration.conferenceUsername = self.conferenceUsernameTextField.text;
@@ -399,31 +400,6 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 //https://conferencing1.brightel.com.cn
 //测试会议ID：299999和299998 两个。
 //“您的姓名”可以默认写一个，CHIT也可以的。或者LSS（雷神山缩写）
-
-- (void)setAFNetwork {
-    
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
-}
-
-- (void)reachabilityDidChange:(NSNotification *)noti {
-    AFNetworkReachabilityStatus status = [noti.userInfo[AFNetworkingReachabilityNotificationStatusItem] integerValue];
-    
-    switch (status) {
-        case AFNetworkReachabilityStatusUnknown:
-            break;
-        case AFNetworkReachabilityStatusNotReachable:
-            
-            [NotificationHelper displayToastToUser:@"网络已断开，请重新连接网络" complete:nil] ;
-            break;
-        case AFNetworkReachabilityStatusReachableViaWWAN:
-            break;
-        case AFNetworkReachabilityStatusReachableViaWiFi:
-            break;
-        default:
-            break;
-    }
-}
 
 @end
 

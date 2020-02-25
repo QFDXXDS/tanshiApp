@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Rom-6X-F65">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Rom-6X-F65">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2oh-eN-gPB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="b5x-p8-cIv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Version: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d75-cT-rxM">
@@ -301,7 +299,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="矢量智能对象" translatesAutoresizingMaskIntoConstraints="NO" id="t1y-vD-fXL">
-                                <rect key="frame" x="79.5" y="805" width="107" height="32"/>
+                                <rect key="frame" x="-27.5" y="788.5" width="214" height="65"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQH-82-PI7">
                                 <rect key="frame" x="20" y="423" width="374" height="50"/>
@@ -326,10 +324,10 @@
                                     <constraint firstAttribute="height" constant="50" id="29E-fr-ybK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层1" translatesAutoresizingMaskIntoConstraints="NO" id="y9U-2d-Sq1">
-                                <rect key="frame" x="227.5" y="805.5" width="106" height="31"/>
+                                <rect key="frame" x="227.5" y="790" width="212" height="62"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wid-jR-rRR">
                                 <rect key="frame" x="206.5" y="796" width="1" height="50"/>
@@ -345,16 +343,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wz_title" translatesAutoresizingMaskIntoConstraints="NO" id="1MO-bO-pxq">
+                                <rect key="frame" x="20" y="12" width="374" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ZFR-lj-Ofr"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bon-uV-BtL" firstAttribute="leading" secondItem="abf-NE-fcz" secondAttribute="leading" constant="10" id="0yV-X9-wCB"/>
                             <constraint firstItem="eIb-jX-yfS" firstAttribute="trailing" secondItem="abf-NE-fcz" secondAttribute="trailing" id="1Sc-xZ-t0D"/>
+                            <constraint firstItem="1MO-bO-pxq" firstAttribute="leading" secondItem="YQH-82-PI7" secondAttribute="leading" id="2kB-lc-mjL"/>
                             <constraint firstItem="mYA-N4-1h6" firstAttribute="top" secondItem="0um-dK-PFH" secondAttribute="bottom" constant="50" id="3Cm-XB-5Iw"/>
                             <constraint firstAttribute="trailing" secondItem="YQH-82-PI7" secondAttribute="trailing" constant="20" id="5jM-HW-6ZL"/>
+                            <constraint firstItem="1MO-bO-pxq" firstAttribute="trailing" secondItem="YQH-82-PI7" secondAttribute="trailing" id="Cl0-7V-Wgy"/>
                             <constraint firstItem="y9U-2d-Sq1" firstAttribute="centerY" secondItem="Wid-jR-rRR" secondAttribute="centerY" id="DlX-4e-9es"/>
                             <constraint firstItem="Wid-jR-rRR" firstAttribute="centerX" secondItem="Na5-A8-UyR" secondAttribute="centerX" id="GYz-gR-wNK"/>
                             <constraint firstAttribute="bottom" secondItem="Wid-jR-rRR" secondAttribute="bottom" constant="50" id="Jnf-PH-lIh"/>
+                            <constraint firstItem="1MO-bO-pxq" firstAttribute="centerX" secondItem="mYA-N4-1h6" secondAttribute="centerX" id="PBA-rZ-4YG"/>
                             <constraint firstItem="mYA-N4-1h6" firstAttribute="centerX" secondItem="Na5-A8-UyR" secondAttribute="centerX" id="PLn-gz-A2O"/>
                             <constraint firstItem="Bon-uV-BtL" firstAttribute="bottom" secondItem="abf-NE-fcz" secondAttribute="bottom" id="RlA-fv-Duq"/>
                             <constraint firstItem="Bon-uV-BtL" firstAttribute="top" secondItem="abf-NE-fcz" secondAttribute="top" id="TZ0-mv-YoD"/>
@@ -363,6 +370,7 @@
                             <constraint firstItem="YQH-82-PI7" firstAttribute="centerY" secondItem="Na5-A8-UyR" secondAttribute="centerY" id="ZhZ-qj-0pv"/>
                             <constraint firstItem="YQH-82-PI7" firstAttribute="top" secondItem="abf-NE-fcz" secondAttribute="bottom" constant="40" id="ZrG-se-vCh"/>
                             <constraint firstItem="Wid-jR-rRR" firstAttribute="leading" secondItem="t1y-vD-fXL" secondAttribute="trailing" constant="20" id="cbw-nS-Gzt"/>
+                            <constraint firstItem="1MO-bO-pxq" firstAttribute="centerY" secondItem="mYA-N4-1h6" secondAttribute="centerY" id="ehq-8u-rH2"/>
                             <constraint firstItem="abf-NE-fcz" firstAttribute="trailing" secondItem="YQH-82-PI7" secondAttribute="trailing" id="ha3-oG-NsT"/>
                             <constraint firstItem="abf-NE-fcz" firstAttribute="leading" secondItem="YQH-82-PI7" secondAttribute="leading" id="k9R-tD-ubz"/>
                             <constraint firstItem="y9U-2d-Sq1" firstAttribute="leading" secondItem="Wid-jR-rRR" secondAttribute="trailing" constant="20" id="kKC-aG-1t1"/>
@@ -384,6 +392,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="conferenceIDTextField" destination="eIb-jX-yfS" id="zL5-Pd-gJ1"/>
+                        <outlet property="idLabel" destination="Bon-uV-BtL" id="93z-3h-oEk"/>
+                        <outlet property="makeVideoCallLabel" destination="YQH-82-PI7" id="kZQ-Ed-fOv"/>
                         <outlet property="titleLabel" destination="mYA-N4-1h6" id="Oov-Zx-fqp"/>
                         <segue destination="nDF-V5-NUv" kind="modal" identifier="videoCallSegue" modalPresentationStyle="fullScreen" id="Lep-8I-MyO"/>
                     </connections>
@@ -394,12 +404,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="wz_title" width="4920" height="920"/>
         <image name="关闭麦克风-开启" width="60" height="60"/>
         <image name="切换摄像头" width="60" height="60"/>
         <image name="图层1" width="106" height="31"/>
         <image name="扬声器-开启" width="60" height="60"/>
         <image name="挂断" width="60" height="60"/>
-        <image name="矢量智能对象" width="107" height="32"/>
+        <image name="矢量智能对象" width="107" height="32.5"/>
         <image name="麦克风" width="60" height="60"/>
     </resources>
 </document>

@@ -19,6 +19,12 @@
 @property (nonatomic, readwrite) NSString *conferenceID;
 @property (nonatomic, readwrite) NSURL *portalURL;
 
+
+@property (nonatomic, readwrite) NSString *tanShi_Name;
+@property (nonatomic, readwrite) NSString *conference_Default_URL;
+@property (nonatomic, readwrite) NSString *PGY_APP_ID;
+
+
 + (instancetype) getInstance;
 
 - (CSUserConfiguration *) userConfigurationFromConfigData;

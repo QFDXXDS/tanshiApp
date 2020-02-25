@@ -13,4 +13,7 @@ NSString *const kRefreshWindowNotification = @"RefreshWindowNotification";
 NSString *const kUserDidRegisterNotification = @"UserDidRegisterNotification";
 NSString *const kUserDidFailToRegisterNotification = @"UserDidFailToRegisterNotification";
 
+
+
 @end
+

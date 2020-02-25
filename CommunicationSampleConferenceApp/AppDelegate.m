@@ -6,13 +6,12 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "ConfigData.h"
 
 //版本：V2.8.9.1 (2018.5.24)
 //改变了检查更新 SDK 的机制，现在只通过比较 App 自身的 Version 和 Build 来判断是否有新版本。
 //对于 iOS 11 以上的版本，有新版本时，不带回调的检查更新方法将不再跳转到 Safari 。
 #import <PgySDK/PgyManager.h>
-
-NSString  * const PGY_APP_ID = @"ae1de8cb87bbd9396d151b91f1779151" ;
 
 @interface AppDelegate ()
 
@@ -31,7 +30,7 @@ NSString  * const PGY_APP_ID = @"ae1de8cb87bbd9396d151b91f1779151" ;
 - (void)setPGY {
     
     //启动基本SDK
-    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:[ConfigData getInstance].PGY_APP_ID];
     //关闭用户反馈功能(默认开启)：
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
     

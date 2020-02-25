@@ -6,6 +6,17 @@
 
 #import "ConfigData.h"
 #import "SDKManager.h"
+#import "CTAppInfo.h"
+//雷神山
+NSString *const LSS_bundleId = @"com.changhongit.tanshiApp" ;
+//火神山
+NSString *const HSS_bundleId = @"com.changhongit.hsstsApp" ;
+//温州火神山
+NSString *const WZ_HSS_bundleId = @"com.changhongit.wzhsstsApp" ;
+
+
+
+
 
 @implementation ConfigData
 
@@ -62,9 +73,12 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
                 self.displayName = @"";
             }
         }
+        
+        [self defaultConfigation];
     }
     return self;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -228,4 +242,27 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
     }
 }
 
+
+- (void)defaultConfigation {
+    
+    NSString *s = [CTAppInfo appBundleId];
+    
+    if ([s isEqual: LSS_bundleId]) {
+        
+        self.tanShi_Name = @"雷神山医院探视系统";
+        self.conference_Default_URL = @"https://conferencing1.brightel.com.cn/portal/tenants/default/?ID=";
+        self.PGY_APP_ID = @"ae1de8cb87bbd9396d151b91f1779151" ;
+    } else if ([s isEqual: HSS_bundleId]) {
+        
+        self.tanShi_Name = @"火神山医院探视系统";
+        self.conference_Default_URL = @"https://conferencing.brightel.com.cn/portal/tenants/default/?ID=";
+        self.PGY_APP_ID = @"1a0d4e0cc5f0e1ae394f81b50ee4fc97" ;
+    } else if ([s isEqual:WZ_HSS_bundleId]) {
+        
+        self.tanShi_Name = @"";
+        self.conference_Default_URL = @"https://meeting1.brightel.com.cn/portal/tenants/default/?ID=";
+        self.PGY_APP_ID = @"ff8a856738a9e3277455cb68ce253870" ;
+
+    }
+}
 @end

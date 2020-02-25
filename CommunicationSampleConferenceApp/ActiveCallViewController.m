@@ -9,6 +9,8 @@
 #import "UIViewController+AutoRotation.h"
 #import "GNAudio.h"
 #import "WHToast/WHToast.h"
+#import "AFNetworking.h"
+
 
 
 #define SCREEN_WIDTH     [UIScreen mainScreen].bounds.size.width
@@ -110,6 +112,7 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
+        [self setAFNetwork];
         if ([GNAudio audioAuthor] == 2) {
             [WHToast showMessage:@"麦克风权限关闭" originY:SCREEN_HEIGHT/2+100 duration:3 finishHandler:^{
                 [self.micButton setBackgroundImage:[UIImage imageNamed:@"关闭麦克风-开启"] forState:UIControlStateNormal];
@@ -621,5 +624,33 @@
     }
     
 }
+
+
+- (void)setAFNetwork {
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+}
+
+- (void)reachabilityDidChange:(NSNotification *)noti {
+    AFNetworkReachabilityStatus status = [noti.userInfo[AFNetworkingReachabilityNotificationStatusItem] integerValue];
+    
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+            break;
+        case AFNetworkReachabilityStatusNotReachable:
+            
+            [NotificationHelper displayToastToUser:@"网络已断开，请重新连接网络" complete:nil] ;
+            break;
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            break;
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            break;
+        default:
+            break;
+    }
+}
+
+
 @end
 
