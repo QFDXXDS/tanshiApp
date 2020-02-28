@@ -23,8 +23,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *conferenceIDTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passCodeLabel;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *idLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *titleImgView;
 
 
 

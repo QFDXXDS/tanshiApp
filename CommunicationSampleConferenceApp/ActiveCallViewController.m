@@ -10,6 +10,7 @@
 #import "GNAudio.h"
 #import "WHToast/WHToast.h"
 #import "AFNetworking.h"
+#import "NotificationHelper.h"
 
 
 
@@ -17,7 +18,7 @@
 #define SCREEN_HEIGHT    [UIScreen mainScreen].bounds.size.height
 
 
-@interface ActiveCallViewController ()
+@interface ActiveCallViewController () <CSConferenceDelegate,CSCallDelegate>
 
 @property (nonatomic) UITapGestureRecognizer *tap;
 @property (nonatomic, weak) NSTimer *callTimer;
@@ -127,7 +128,8 @@
         }
 
     });
-    
+    self.currentCall.delegate = self ;
+    self.currentCall.conference.delegate = self ;
 }
 
 - (void)audioRouteChangeListenerCallback:(NSNotification *)notification {
@@ -651,6 +653,24 @@
     }
 }
 
+
+#pragma mark conference代理
+
+- (void)conference:(CSConference *)conference didRequirePasscode:(BOOL)permissionToEnterLockedConferenceRequired {
+    
+    [conference sendPasscode:self.passCode completionHandler:^(NSError *error) {
+        
+        if (error) {
+            
+            [self endCallBtnClicked:nil];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [NotificationHelper displayToastToUser:@"密码错误请确认" complete:nil];
+            });
+        }
+    }];
+}
 
 @end
 

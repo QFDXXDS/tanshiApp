@@ -21,6 +21,8 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 
 
  extern NSString *const WZ_HSS_bundleId;
+extern NSString *const SH_HSS_bundleId;
+extern NSString *const SH_HSS_bundleId_PASS;
 
 
 
@@ -78,7 +80,23 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
         self.titleLabel.hidden = YES ;
         self.idLabel.text = @"远程会诊探视ID：" ;
         [self.makeVideoCallLabel setTitle:@"开始" forState:UIControlStateNormal ] ;
+        self.titleImgView.image = [UIImage imageNamed:@"wz_title"] ;
+
+    } else if ([[CTAppInfo appBundleId] isEqual:SH_HSS_bundleId] || [[CTAppInfo appBundleId] isEqual:SH_HSS_bundleId_PASS]) {
+        self.titleLabel.hidden = YES ;
+        self.idLabel.text = @"远程会诊探视ID：" ;
+        [self.makeVideoCallLabel setTitle:@"开始" forState:UIControlStateNormal ] ;
+        self.titleImgView.image = [UIImage imageNamed:@"sh_title"] ;
+
+    } else {
+        
+        self.titleImgView.hidden = YES ;
     }
+    
+    
+    
+    
+    
     
 }
 
@@ -107,18 +125,15 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 
 - (IBAction)makeVideoCall:(UIButton *)sender {
     
-        
     NSString *ID = self.conferenceIDTextField.text ;
-//     温州火神山不判断一下类容
-    if (![[CTAppInfo appBundleId] isEqual:WZ_HSS_bundleId]) {
+//     温州火神山不判断一下类容，上海项目也不加
+    if (![[CTAppInfo appBundleId] isEqual:WZ_HSS_bundleId] && ![[CTAppInfo appBundleId] isEqual:SH_HSS_bundleId]) {
         if(![CTRegex is6Number:ID] ) {
 
             [NotificationHelper displayToastToUser:kIDErrorDesc complete:nil];
             return;
         }
-
     }
-    
     
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kGetMediaAuthority]) {
         
@@ -146,6 +161,7 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 - (void)dismissKeyboard {
     [self.conferenceURLTextField resignFirstResponder];
     [self.conferenceIDTextField resignFirstResponder];
+    [self.passCodeLabel resignFirstResponder];
 
 }
 
@@ -178,7 +194,7 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
 //    _active.color = [UIColor redColor];
     _active.frame = self.view.frame ;
     //控件中心坐标
-    _active.center = self.view.center  ;
+    _active.center = self.makeVideoCallLabel.center  ;
     //开启动画
     [_active startAnimating];
     _active.hidesWhenStopped = YES;
@@ -208,6 +224,8 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
         NSLog(@"%s currentCall = [%@]", __PRETTY_FUNCTION__, self.currentCall);
         [self videoCall];
         transferViewController.currentCall = self.currentCall;
+        transferViewController.passCode = self.passCodeLabel.text;
+
     }
 }
 
@@ -375,7 +393,7 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
         }
     }
     
-    
+    self.passCodeLabel.text = configuration.passCode ;
     self.conferenceUsernameTextField.text = configuration.conferenceUsername;
     self.conferenceUsernameTextField.enabled = !configuration.loginAsGuest;
     self.conferencePasswordTextField.text = configuration.conferencePassword;
@@ -388,7 +406,7 @@ NSString *const kGetMediaAuthority = @"audioAndVideoAuthor";
     ConfigData *configuration = [ConfigData getInstance];
     
     configuration.conferenceURL = [NSString stringWithFormat:@"%@%@",[ConfigData getInstance].conference_Default_URL,self.conferenceIDTextField.text];
-    
+    configuration.passCode = self.passCodeLabel.text ;
     configuration.loginAsGuest = self.guestLoginSwitch.on;
     configuration.displayName = (self.displayNameTextField.text.length > 0)? self.displayNameTextField.text : @"Guest";
     configuration.conferenceUsername = self.conferenceUsernameTextField.text;

@@ -13,6 +13,10 @@ NSString *const LSS_bundleId = @"com.changhongit.tanshiApp" ;
 NSString *const HSS_bundleId = @"com.changhongit.hsstsApp" ;
 //温州火神山
 NSString *const WZ_HSS_bundleId = @"com.changhongit.wzhsstsApp" ;
+//上海
+NSString *const SH_HSS_bundleId = @"com.changhongit.shhsstsApp" ;
+//上海--带密码
+NSString *const SH_HSS_bundleId_PASS = @"com.changhongit.shhsstsApp-pass" ;
 
 
 
@@ -52,7 +56,8 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
             self.conferencePassword = [standardUserDefaults stringForKey:@"conferencePassword"];
             self.conferenceURL = [standardUserDefaults stringForKey:@"conferenceURL"];
             self.displayName = [standardUserDefaults stringForKey:@"displayName"];
-            
+            self.passCode = [standardUserDefaults stringForKey:@"passCode"];
+             
             if ([standardUserDefaults objectForKey:@"loginAsGuest"] == nil) {
                 self.loginAsGuest = YES;
             } else {
@@ -71,6 +76,9 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
             }
             if (self.displayName == nil) {
                 self.displayName = @"";
+            }
+            if (self.passCode == nil) {
+                self.passCode = @"" ;
             }
         }
         
@@ -238,6 +246,8 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
         [standardUserDefaults setObject:self.conferenceURL forKey:@"conferenceURL"];
         [standardUserDefaults setObject:self.displayName forKey:@"displayName"];
         [standardUserDefaults setBool:self.loginAsGuest forKey:@"loginAsGuest"];
+        [standardUserDefaults setObject:self.passCode forKey:@"passCode"];
+
         [standardUserDefaults synchronize];
     }
 }
@@ -263,6 +273,20 @@ ClientCredentialProvider *unifiedPortalCredentialProvider;
         self.conference_Default_URL = @"https://meeting1.brightel.com.cn/portal/tenants/default/?ID=";
         self.PGY_APP_ID = @"ff8a856738a9e3277455cb68ce253870" ;
 
+    } else if ([s isEqual:SH_HSS_bundleId]) {
+        
+        self.tanShi_Name = @"";
+        self.conference_Default_URL = @"https://meeting1.brightel.com.cn/portal/tenants/default/?ID=";
+        self.PGY_APP_ID = @"8eedec8801e59007bcc036d5bd55fe05" ;
+    } else if ([s isEqual:SH_HSS_bundleId_PASS]) {
+        
+        self.tanShi_Name = @"";
+        self.conference_Default_URL = @"https://meeting1.brightel.com.cn/portal/tenants/default/?ID=";
+        self.PGY_APP_ID = @"f8209c722bfa6eb077a65e960fed8089" ;
     }
+    
+    
+    
+    
 }
 @end

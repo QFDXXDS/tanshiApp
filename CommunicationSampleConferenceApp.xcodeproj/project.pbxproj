@@ -680,7 +680,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.wzhsstsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.changhongit.shhsstsApp-pass";
 				PRODUCT_NAME = "会诊探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7s";
@@ -705,7 +705,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.changhongit.wzhsstsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.changhongit.shhsstsApp-pass";
 				PRODUCT_NAME = "会诊探视";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7s";

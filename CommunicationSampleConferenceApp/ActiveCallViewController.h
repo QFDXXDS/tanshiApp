@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *holdCallBtn;
 
 @property (nonatomic, weak) CSCall *currentCall;
+@property (nonatomic,copy)NSString *passCode;
 
 @property (weak, nonatomic) IBOutlet UIButton *speakerButton;
 @property (weak, nonatomic) IBOutlet UIButton *micButton;

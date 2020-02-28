@@ -11,6 +11,8 @@
 @interface ConfigData : NSObject
 
 @property (nonatomic, readwrite) NSString *conferenceUsername;
+@property (nonatomic, readwrite) NSString *passCode;
+
 @property (nonatomic, readwrite) NSString *conferencePassword;
 @property (nonatomic, readwrite) NSString *displayName;
 @property (nonatomic, readwrite) BOOL loginAsGuest;
